@@ -4,7 +4,7 @@
 
 ### :pencil: Description:
 
-This is a LUA port of tpopes famous [vim-unimpaired](https://github.com/tpope/vim-unimpaired) plugin. `unimpaired.nvim` aims to replicate the exact behaviour of `vim-unimpaired`, with some exceptions (see [caveats](#caveats)).
+This is a LUA port of tpope's famous [vim-unimpaired](https://github.com/tpope/vim-unimpaired) plugin. `unimpaired.nvim` aims to replicate the exact behaviour of `vim-unimpaired`, with some exceptions (see [caveats](#caveats)).
 
 `unimpaired.nvim` is a collection of useful keymaps which follow a pattern: They
 come in complementary pairs which mostly fall into four categories:
@@ -47,7 +47,7 @@ Example using [lazy](https://github.com/folke/lazy.nvim):
 ```
 
 
-### ⚙️  Configuration
+### ⚙️ Configuration
 
 The `setup()` function takes a dictionary with user configurations. If you don't
 want to customize the default behaviour, you don't need to put anything in
