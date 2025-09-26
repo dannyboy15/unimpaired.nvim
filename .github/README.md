@@ -83,6 +83,9 @@ require('unimpaired').setup {
 
     -- Disable the default mappings if you prefer to define your own mappings
     default_keymaps = false,
+
+    -- Enable the `unimpaired` mappings instead of the nvim defaults in Neovim >= 0.11.0
+    use_nvim_defaults = false,
 }
 ```
 
@@ -94,6 +97,13 @@ To see all keys of the `keymaps` table, have a look at the default setup options
 ### Caveats:
 
 This plugin is work in progress. You may experience bugs and changes of the API.
+
+#### Important ⚠️
+
+As of Neovim >= 0.11.0, many [keymaps were added out of the box](https://neovim.io/doc/user/news-0.11.html#_defaults).
+Those keymaps are disabled from the default `unimpaired` config in favor of Neovim's.
+To enable them, i.e. use `unimpaired`'s version, include `use_nvim_defaults = false,`
+in your config (see [Configuration](#️-configuration)).
 
 Functionalities which are not supported yet:
 

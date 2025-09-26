@@ -1,138 +1,182 @@
 local M = {}
 
+-- https://neovim.io/doc/user/news-0.11.html#_defaults
+
+local nvim_11_default_keymaps = {
+    previous = {
+        mapping = '[a',
+        description = 'Jump to [count] previous file in arglist',
+        dot_repeat = false,
+    },
+    next = {
+        mapping = ']a',
+        description = 'Jump to [count] next file in arglist',
+        dot_repeat = false,
+    },
+    first = {
+        mapping = '[A',
+        description = 'Jump to first file in arglist',
+        dot_repeat = false,
+    },
+    last = {
+        mapping = ']A',
+        description = 'Jump to last file in arglist',
+        dot_repeat = false,
+    },
+    bprevious = {
+        mapping = '[b',
+        description = 'Jump to [count] previous buffer',
+        dot_repeat = false,
+    },
+    bnext = {
+        mapping = ']b',
+        description = 'Jump to [count] next buffer',
+        dot_repeat = false,
+    },
+    bfirst = {
+        mapping = '[B',
+        description = 'Jump to first buffer',
+        dot_repeat = false,
+    },
+    blast = {
+        mapping = ']B',
+        description = 'Jump to last buffer',
+        dot_repeat = false,
+    },
+    lprevious = {
+        mapping = '[l',
+        description = 'Jump to [count] previous entry in loclist',
+        dot_repeat = false,
+    },
+    lnext = {
+        mapping = ']l',
+        description = 'Jump to [count] next entry in loclist',
+        dot_repeat = false,
+    },
+    lfirst = {
+        mapping = '[L',
+        description = 'Jump to first entry in loclist',
+        dot_repeat = false,
+    },
+    llast = {
+        mapping = ']L',
+        description = 'Jump to last entry in loclist',
+        dot_repeat = false,
+    },
+    lpfile = {
+        mapping = '[<C-l>',
+        description = 'Jump to last entry of [count] previous file in loclist',
+        dot_repeat = false,
+    },
+    lnfile = {
+        mapping = ']<C-l>',
+        description = 'Jump to first entry of [count] next file in loclist',
+        dot_repeat = false,
+    },
+    cprevious = {
+        mapping = '[q',
+        description = 'Jump to [count] previous entry in qflist',
+        dot_repeat = false,
+    },
+    cnext = {
+        mapping = ']q',
+        description = 'Jump to [count] next entry in qflist',
+        dot_repeat = false,
+    },
+    cfirst = {
+        mapping = '[Q',
+        description = 'Jump to first entry in qflist',
+        dot_repeat = false,
+    },
+    clast = {
+        mapping = ']Q',
+        description = 'Jump to last entry in qflist',
+        dot_repeat = false,
+    },
+    cpfile = {
+        mapping = '[<C-q>',
+        description = 'Jump to last entry of [count] previous file in qflist',
+        dot_repeat = false,
+    },
+    cnfile = {
+        mapping = ']<C-q>',
+        description = 'Jump to first entry of [count] next file in qflist',
+        dot_repeat = false,
+    },
+    tprevious = {
+        mapping = '[t',
+        description = 'Jump to [count] previous matching tag',
+        dot_repeat = false,
+    },
+    tnext = {
+        mapping = ']t',
+        description = 'Jump to [count] next matching tag',
+        dot_repeat = false,
+    },
+    tfirst = {
+        mapping = '[T',
+        description = 'Jump to first matching tag',
+        dot_repeat = false,
+    },
+    tlast = {
+        mapping = ']T',
+        description = 'Jump to last matching tag',
+        dot_repeat = false,
+    },
+    ptprevious = {
+        mapping = '[<C-t>',
+        description = ':tprevious in the preview window',
+        dot_repeat = false,
+    },
+    ptnext = {
+        mapping = ']<C-t>',
+        description = ':tnext in the preview window',
+        dot_repeat = false,
+    },
+    blank_above = {
+        mapping = '[<Space>',
+        description = 'Add [count] blank lines above',
+        dot_repeat = true,
+    },
+    blank_below = {
+        mapping = ']<Space>',
+        description = 'Add [count] blank lines below',
+        dot_repeat = true,
+    },
+}
+
 local defaults = {
     default_keymaps = true,
+    use_nvim_defaults = true,
     keymaps = {
-        previous = {
-            mapping = '[a',
-            description = 'Jump to [count] previous file in arglist',
-            dot_repeat = false,
-        },
-        next = {
-            mapping = ']a',
-            description = 'Jump to [count] next file in arglist',
-            dot_repeat = false,
-        },
-        first = {
-            mapping = '[A',
-            description = 'Jump to first file in arglist',
-            dot_repeat = false,
-        },
-        last = {
-            mapping = ']A',
-            description = 'Jump to last file in arglist',
-            dot_repeat = false,
-        },
-        bprevious = {
-            mapping = '[b',
-            description = 'Jump to [count] previous buffer',
-            dot_repeat = false,
-        },
-        bnext = {
-            mapping = ']b',
-            description = 'Jump to [count] next buffer',
-            dot_repeat = false,
-        },
-        bfirst = {
-            mapping = '[B',
-            description = 'Jump to first buffer',
-            dot_repeat = false,
-        },
-        blast = {
-            mapping = ']B',
-            description = 'Jump to last buffer',
-            dot_repeat = false,
-        },
-        lprevious = {
-            mapping = '[l',
-            description = 'Jump to [count] previous entry in loclist',
-            dot_repeat = false,
-        },
-        lnext = {
-            mapping = ']l',
-            description = 'Jump to [count] next entry in loclist',
-            dot_repeat = false,
-        },
-        lfirst = {
-            mapping = '[L',
-            description = 'Jump to first entry in loclist',
-            dot_repeat = false,
-        },
-        llast = {
-            mapping = ']L',
-            description = 'Jump to last entry in loclist',
-            dot_repeat = false,
-        },
-        lpfile = {
-            mapping = '[<C-l>',
-            description = 'Jump to last entry of [count] previous file in loclist',
-            dot_repeat = false,
-        },
-        lnfile = {
-            mapping = ']<C-l>',
-            description = 'Jump to first entry of [count] next file in loclist',
-            dot_repeat = false,
-        },
-        cprevious = {
-            mapping = '[q',
-            description = 'Jump to [count] previous entry in qflist',
-            dot_repeat = false,
-        },
-        cnext = {
-            mapping = ']q',
-            description = 'Jump to [count] next entry in qflist',
-            dot_repeat = false,
-        },
-        cfirst = {
-            mapping = '[Q',
-            description = 'Jump to first entry in qflist',
-            dot_repeat = false,
-        },
-        clast = {
-            mapping = ']Q',
-            description = 'Jump to last entry in qflist',
-            dot_repeat = false,
-        },
-        cpfile = {
-            mapping = '[<C-q>',
-            description = 'Jump to last entry of [count] previous file in qflist',
-            dot_repeat = false,
-        },
-        cnfile = {
-            mapping = ']<C-q>',
-            description = 'Jump to first entry of [count] next file in qflist',
-            dot_repeat = false,
-        },
-        tprevious = {
-            mapping = '[t',
-            description = 'Jump to [count] previous matching tag',
-            dot_repeat = false,
-        },
-        tnext = {
-            mapping = ']t',
-            description = 'Jump to [count] next matching tag',
-            dot_repeat = false,
-        },
-        tfirst = {
-            mapping = '[T',
-            description = 'Jump to first matching tag',
-            dot_repeat = false,
-        },
-        tlast = {
-            mapping = ']T',
-            description = 'Jump to last matching tag',
-            dot_repeat = false,
-        },
-        ptprevious = {
-            mapping = '[<C-t>',
-            description = ':tprevious in the preview window',
-            dot_repeat = false,
-        },
-        ptnext = {
-            mapping = ']<C-t>',
-            description = ':tnext in the preview window',
-            dot_repeat = false,
-        },
+        previous = false,
+        next = false,
+        first = false,
+        last = false,
+        bprevious = false,
+        bnext = false,
+        bfirst = false,
+        blast = false,
+        lprevious = false,
+        lnext = false,
+        lfirst = false,
+        llast = false,
+        lpfile = false,
+        lnfile = false,
+        cprevious = false,
+        cnext = false,
+        cfirst = false,
+        clast = false,
+        cpfile = false,
+        cnfile = false,
+        tprevious = false,
+        tnext = false,
+        tfirst = false,
+        tlast = false,
+        ptprevious = false,
+        ptnext = false,
+        blank_above = false,
+        blank_below = false,
         previous_file = {
             mapping = '[f',
             description = 'Previous file in directory. :colder in qflist',
@@ -142,16 +186,6 @@ local defaults = {
             mapping = ']f',
             description = 'Next file in directory. :cnewer in qflist',
             dot_repeat = false,
-        },
-        blank_above = {
-            mapping = '[<Space>',
-            description = 'Add [count] blank lines above',
-            dot_repeat = true,
-        },
-        blank_below = {
-            mapping = ']<Space>',
-            description = 'Add [count] blank lines below',
-            dot_repeat = true,
         },
         exchange_above = {
             mapping = '[e',
@@ -427,6 +461,10 @@ M.init = function(user_conf)
     user_conf = user_conf or {}
     if user_conf.default_keymaps == false then
         defaults = {}
+    elseif vim.fn.has('nvim-0.11') == 0 or user_conf.use_nvim_defaults == false then
+        print(vim.inspect(defaults))
+        defaults = vim.tbl_deep_extend('force', defaults.keymaps, nvim_11_default_keymaps)
+        print(vim.inspect(defaults))
     end
     M.options = vim.tbl_deep_extend('force', defaults, user_conf)
 end
